@@ -10,3 +10,16 @@
 
  	   create cakeContainer.js
      
+**4-(cakeContainer.js)**
+
+	`import React from "react";
+
+function CakeContainer(){
+    return(
+        <div>
+
+        </div>
+    )
+}
+
+export default CakeContainer;`
