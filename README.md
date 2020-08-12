@@ -8,25 +8,29 @@
      
 **3-(components folder)**
 
- 	   create cakeContainer.js
+ 	   create wineContainer.js
      
-**4-(cakeContainer.js)**
+**4-(wineContainer.js)**
 
  	  import React from "react";
 
- 	  function CakeContainer(){
+ 	  function WineContainer(){
  	      return(
            <div>
-             <h2>Number of Cakes</h2>
-             <button>Buy Cake</button>
+             <h2>Number of Wine bottles</h2>
+             <button>Buy Wine</button>
            </div>
  	      )
  	  }
 
- 	  export default CakeContainer;
+ 	  export default WineContainer;
 
-**4-(App.js)**
+**5-(App.js)**
 
-`Remove everything in App.js`
+`Remove everything in App.js , and include <WineContainer />`
 
+
+**6-(App.js)**
+
+> initial state is default state for store | first run   reducer will accept [state and action] 
 
