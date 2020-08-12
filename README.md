@@ -11,8 +11,8 @@
  	   create cakeContainer.js
      
 **4-(cakeContainer.js)**
-
-	`import React from "react";
+(
+import React from "react";
 
   function CakeContainer(){
     return(
@@ -22,4 +22,5 @@
     )
   }
 
-export default CakeContainer;`
+export default CakeContainer;
+)
