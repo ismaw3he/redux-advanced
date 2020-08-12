@@ -14,12 +14,12 @@
 
 	`import React from "react";
 
-function CakeContainer(){
+  function CakeContainer(){
     return(
         <div>
 
         </div>
     )
-}
+  }
 
 export default CakeContainer;`
