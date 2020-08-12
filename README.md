@@ -15,12 +15,18 @@
  	  import React from "react";
 
  	  function CakeContainer(){
- 	   return(
-        <div>
-
-        </div>
- 	  )
+ 	      return(
+           <div>
+             <h2>Number of Cakes</h2>
+             <button>Buy Cake</button>
+           </div>
+ 	      )
  	  }
 
  	  export default CakeContainer;
+
+**4-(App.js)**
+
+`Remove everything in App.js`
+
 
