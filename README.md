@@ -4,13 +4,13 @@
 
 **2-(src folder)**
 
- 	   create components folder
+`create components folder`
      
 **3-(components folder)**
 
- 	   create wineContainer.js
+`create WineContainer.js`
      
-**4-(wineContainer.js)**
+**4-(WineContainer.js)**
 
  	  import React from "react";
 
@@ -30,7 +30,10 @@
 `Remove everything in App.js , and include <WineContainer />`
 
 
-**6-(App.js)**
+**6-(src folder)**
 
-> initial state is default state for store | first run   reducer will accept [state and action] 
+> Time to create a folder structure for REDUX app
+
+`create redux folder`
+
 
