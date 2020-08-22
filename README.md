@@ -245,3 +245,24 @@ ________________________________________________________________________________
  	      numOfWine: state.wine.numOfWine
  	    }
  	  }
+
+_____________________________________________________________________________________________________________________
+
+
+**21-(store.js)**
+
+> Adding a logger to our redux app
+
+**1)** `yarn add redux-logger`
+
+**2)** `Now import applyMiddleware from redux and logger from redux-logger`
+
+**3)** `You should add applyMiddleware to your createStore function with logger:`
+ 	  
+ 	  import {createStore, applyMiddleware} from "redux";
+ 	  import logger from 'redux-logger'
+ 	  import rootReducer from "./rootReducer"
+ 	  
+ 	  const store = createStore(rootReducer, applyMiddleware(logger));
+ 	  
+ 	  export default store;
