@@ -136,3 +136,38 @@
  	  }
 
  	  export default App;
+
+
+**15-(redux folder)**
+
+> It is a best solution to export all actions from one place which is **index.js**. We will use them in components to dispatch an action
+
+`create index.js`
+
+
+**16-(index.js)**
+
+ 	  export { buyWine } from "./wine/wineActions"
+ 
+ 
+**17-(WineContainer.js)**
+
+> Import the action **(import {buyWine} from "../redux/index")** and create our mapStateToProps and mapDispatchToProps functions
+
+ 	  const mapStateToProps = state =>{
+ 	    return{
+ 	      numOfWine: state.numOfWine
+ 	    }
+ 	  }
+ 	  
+ 	  const mapDispatchToProps = dispatch =>{
+ 	    return{
+ 	      buyWine: ()=> dispatch(buyWine())
+ 	    }
+ 	  }
+       
+**18-(WineContainer.js)**
+
+> Time to connect to our store with component. Do not forget to import the connect from react-redux **import {connect} from "react-redux"**
+
+ 	  export default connect(mapStateToProps, mapDispatchToProps)( WineContainer);
