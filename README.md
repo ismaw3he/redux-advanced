@@ -251,7 +251,7 @@ ________________________________________________________________________________
 
 **21-(store.js)**
 
-> Adding a logger to our redux app
+> Adding a logger and redux-devtools-extension to our redux app
 
 **1)** `yarn add redux-logger`
 
@@ -266,3 +266,20 @@ ________________________________________________________________________________
  	  const store = createStore(rootReducer, applyMiddleware(logger));
  	  
  	  export default store;
+
+**4)** `logger is ready you can inspect and check actions on console`
+
+**5)** `now lets install redux-devtools-extension to chrome and in our app: yarn add redux-devtools-extension`
+
+**6)** `Time to compose with devtools`
+
+ 	  import {createStore, applyMiddleware} from "redux";
+ 	  import {composeWithDevTools} from "redux-devtools-extension"
+ 	  import logger from 'redux-logger'
+ 	  import rootReducer from "./rootReducer"
+ 	  
+ 	  const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger)));
+ 	  
+ 	  export default store;
+       
+_____________________________________________________________________________________________________________________
