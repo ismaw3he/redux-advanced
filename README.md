@@ -203,5 +203,45 @@
  	  }
 
  	  export default connect(mapStateToProps, mapDispatchToProps)( WineContainer);
-       
+_____________________________________________________________________________________________________________________
+
+
+**20-(redux folder)**
+
+> Now if you need second component with it's own state, You sould do following steps:
+
+**1)** `Create new folder in redux like before (wine)`
+
+**2)** `create js files the same as wineActions.js, wineTypes.js, wineReducer.js`
   
+**3)** `Now we need to add new item to our redux store. Create rootReducer.js in redux folder to combine multiple reducers:`
+
+ 	  import {combineReducers} from "redux";
+ 	  import wineReducer from "./wine/wineReducer"
+ 	  
+ 	  // you can add extra reducers in this object
+ 	  const rootReducer = combineReducers({
+ 	      wine: wineReducer
+ 	  })
+ 	  
+ 	  export default rootReducer;
+       
+**4)** `Change store.js with our new rootReducer: `
+
+ 	  import {createStore} from "redux";
+ 	  import rootReducer from "./rootReducer"
+ 	  
+ 	  const store = createStore(rootReducer);
+ 	  
+ 	  export default store;
+       
+**5)** `Do not forget to export your new action from index.js`
+
+**6)** `Now in all of your components you should change the mapStateToProps() function.`
+ 	  
+       // If used combineReducer : state.{name}.property
+ 	  const mapStateToProps = state =>{
+ 	    return{
+ 	      numOfWine: state.wine.numOfWine
+ 	    }
+ 	  }
