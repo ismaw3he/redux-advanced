@@ -283,3 +283,69 @@ ________________________________________________________________________________
  	  export default store;
        
 _____________________________________________________________________________________________________________________
+
+
+**22-(components folder)**
+
+**1)** `Create NewWineContainer.js`
+
+**2)** `Copy all the code from our WineContainer.js and make necessary changes: component name, input tag, keep number value (useState), onClick method, mapDispatchToProps`
+
+ 	  import React, {useState} from "react";
+ 	  import {connect} from "react-redux"
+ 	  import {buyWine} from "../redux/index"
+ 	  
+ 	  function NewWineContainer(props){
+ 	      const [number, setNumber] = useState(1)
+ 	      return(
+ 	      <div>
+ 	        <h2>Number of Wine bottles: {props.numOfWine}</h2>
+  	       <input type="text" value={number} onChange={e =>{
+ 	            setNumber(e.target.value)
+ 	        }} />
+ 	        <button onClick={()=>{props.buyWine(number)}}>Buy {number} Wine</button>
+ 	      </div>
+ 	      )
+ 	  }
+ 	  
+ 	  // If used combineReducer : state.{name}.property
+ 	  const mapStateToProps = state =>{
+ 	    return{
+ 	      numOfWine: state.wine.numOfWine
+ 	    }
+ 	  }
+
+ 	  const mapDispatchToProps = dispatch =>{
+ 	    return{
+ 	      buyWine: number => dispatch(buyWine(number))
+ 	    }
+ 	  }
+
+ 	  export default connect(mapStateToProps, mapDispatchToProps)( NewWineContainer);
+       
+**3)** `Add Payload to wineActions.js (If you have used this action in somewhere else do not forget to add default value to nnumber)`
+
+ 	  import {BUY_WINE} from "./wineTypes";
+ 	   	  
+ 	  export const buyWine = (number = 1) =>{
+ 	      return{
+ 	          type: BUY_WINE,
+ 	          payload: number
+ 	      }
+ 	  }
+       
+**4)** `use payload in wineReducer.js (instead of -1 use action.payload) (action.type and action.payload are properties of our action)`
+
+ 	  const wineReducer = (state = initialState, action) =>{
+ 	      switch(action.type){
+ 	          case BUY_WINE: return{
+ 	              ...state,
+ 	              numOfWine: state.numOfWine - action.payload
+ 	             }
+ 	  
+ 	           default: return state
+ 	      }
+ 	  }
+
+_____________________________________________________________________________________________________________________
+
