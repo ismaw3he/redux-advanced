@@ -8,7 +8,7 @@ const wineReducer = (state = initialState, action) =>{
     switch(action.type){
         case BUY_WINE: return{
             ...state,
-            numOfWine: state.numOfWine - 1
+            numOfWine: state.numOfWine - action.payload
            }
 
          default: return state
