@@ -349,3 +349,112 @@ ________________________________________________________________________________
 
 _____________________________________________________________________________________________________________________
 
+**23-(terminal) ASYNC actions & REDUX thunk GET request**
+
+**1)** `yarn add axios redux-thunk`
+
+**2)** `yarn add axios redux-thunk`
+
+**3)** `(components folder) create UserContainer.js`
+
+ 	  import React from "react";
+ 	  
+ 	  function UserContainer(props){
+ 	      return(
+ 	      <div>
+ 	        <h1>User  Container</h1>
+  	     </div>
+ 	      )
+ 	  }
+ 	  
+ 	  
+ 	  
+ 	  export default UserContainer;
+       
+**4)** `(redux folder) create user folder`
+
+**5)** `(user folder) create userTypes.js`
+
+ 	  export const FETCH_USERS_REQUEST = "FETCH_USERS_REQUEST";
+ 	  export const FETCH_USERS_SUCCESS = "FETCH_USERS_SUCCESS";
+ 	  export const FETCH_USERS_FAILURE = "FETCH_USERS_FAILURE";
+       
+**6)** `(user folder) create userActions.js`
+
+ 	  import {
+ 	      FETCH_USERS_REQUEST,
+ 	      FETCH_USERS_SUCCESS,
+ 	      FETCH_USERS_FAILURE
+ 	  } from "./userTypes";
+ 	  
+ 	  export const fetchUsersRequest = () =>{
+ 	      return {
+ 	          type: FETCH_USERS_REQUEST
+ 	      }
+ 	  }
+ 	  
+ 	  export const fetchUsersSuccess = users =>{
+ 	      return {
+ 	          type: FETCH_USERS_SUCCESS,
+ 	          payload: users
+ 	      }
+ 	  }
+
+ 	  export const fetchUsersFailure = error =>{
+ 	      return {
+ 	          type: FETCH_USERS_FAILURE,
+ 	          payload: error
+ 	      }
+ 	  }
+       
+**7)** `(user folder) create userReducer.js`
+
+ 	  const { FETCH_USERS_REQUEST, FETCH_USERS_SUCCESS, FETCH_USERS_FAILURE } = require("./userTypes")
+ 	  
+ 	  const initialState = {
+ 	      loading: false,
+ 	      users: [],
+ 	      error: ""
+ 	  }
+ 	  
+ 	  const userReducer = (state = initialState, action) => {
+ 	      switch (action.type) {
+ 	          case FETCH_USERS_REQUEST:
+ 	              return {
+ 	                  ...state,
+ 	                  loading: true
+ 	              }
+ 	          case FETCH_USERS_SUCCESS:
+ 	              return {
+ 	                  ...state,
+ 	                  loading: false,
+ 	                  users: action.payload
+ 	              }
+ 	          case FETCH_USERS_FAILURE:
+ 	              return {
+ 	                  ...state,
+ 	                  loading: false,
+ 	                  users: [],
+ 	                  error: action.payload
+  	             }
+  	         default: return state
+ 	  
+ 	      }
+ 	  }
+ 	  
+ 	  export default userReducer;
+       
+**8)** `(index.js) Export all action creaters from index.js`
+
+ 	  export { buyWine } from "./wine/wineActions"
+ 	  export * from "./user/userActions"
+       
+**9)** `(rootReducer.js) add userReducer to rootReducer`
+
+ 	  // you can add extra reducers in this object
+ 	  const rootReducer = combineReducers({
+ 	      wine: wineReducer,
+ 	      user: userReducer
+ 	  })
+       
+**10)** `(rootReducer.js) add userReducer to rootReducer`
