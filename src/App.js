@@ -5,6 +5,8 @@ import WineContainer from './components/WineContainer';
 import { Provider } from "react-redux";
 import store from "./redux/store"
 import NewWineContainer from './components/NewWineContainer';
+import UserContainer from "./components/UserContainer"
+
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
       <div className="App">
         <WineContainer />
         <NewWineContainer/>
+        <UserContainer />
       </div>
     </Provider>
   );
