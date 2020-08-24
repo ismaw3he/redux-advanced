@@ -457,4 +457,78 @@ ________________________________________________________________________________
  	      user: userReducer
  	  })
        
-**10)** `(rootReducer.js) add userReducer to rootReducer`
+**10)** `(store.js) apply redux-thunk middleware to our store`
+
+ 	  import thunk from "redux-thunk"
+ 	  const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(logger, thunk)));
+       
+**11)** `(userActions.js) import axios`
+
+ 	  import axios from "axios"
+       
+**12)** `(userActions.js) create fetchUsers function and export it to use in your component`
+
+ 	  export const fetchUsers = () =>{
+ 	      return (dispatch) =>{
+ 	          dispatch(fetchUsersRequest())
+ 	          axios.get("https://jsonplaceholder.typicode.com/users")
+ 	          .then(response=>{
+ 	              const users = response.data;
+ 	              dispatch(fetchUsersSuccess(users))
+ 	          })
+ 	          .catch(error=>{
+ 	              const errorMsg = error.message;
+ 	              dispatch(fetchUsersFailure(errorMsg))
+ 	          })
+ 	      }
+ 	  }  
+       
+**13)** `(UserContainer.js) connect our component to redux and call fetchUsers() on load`
+
+ 	  import React, {useEffect} from "react";
+ 	  import {connect} from "react-redux";
+ 	  import { fetchUsers } from "../redux"
+ 	  
+ 	  function UserContainer({ userData, fetchUsers }){
+ 	      useEffect(()=>{
+ 	          fetchUsers()
+ 	      }, []) // Empty dependency array helps to load just once
+ 	      
+ 	      return userData.loading ? (
+ 	          <h2>Loading</h2>
+ 	      ) : userData.error? (
+ 	          <h2>{userData.error}</h2>
+ 	      ) : (
+ 	          <div>
+  	             <h2>User List</h2>
+  	             <div>
+  	                 {userData && 
+  	                  userData.users &&
+  	                  userData.users.map(user =>{
+  	                      return <p key={user.id} >{user.name}</p>
+  	                     
+  	                  })
+  	                 }
+  	             </div>
+  	         </div>
+  	     )
+ 	  }
+ 	  
+ 	  const mapStateToProps = state =>{
+ 	      return {
+ 	          userData : state.user
+ 	      }
+ 	  }
+ 	  
+ 	  const mapDispatchToProps = dispatch => {
+ 	      return {
+ 	          fetchUsers: () =>{dispatch(fetchUsers())}
+ 	      }
+ 	  }
+ 	  
+ 	  
+ 	  export default connect(mapStateToProps, mapDispatchToProps)(UserContainer);
+       
+**14)** `(App.js) Finally use your component in App.js to see the result`   
+
+**--HAPPY HACKING!!!--**
